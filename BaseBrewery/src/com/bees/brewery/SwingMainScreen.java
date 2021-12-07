@@ -1,7 +1,13 @@
 package com.bees.brewery;
 
+import com.bees.brewery.ex.VolumeInsuficienteEx;
+
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
@@ -9,11 +15,13 @@ import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
 import java.util.concurrent.Flow;
 
-public class SwingMainScreen implements PropertyChangeListener {
+public class SwingMainScreen {
+
+    private JFrame frame = null;
 
     public void execute() {
         //Creating the Frame
-        JFrame frame = new JFrame("Chat Frame");
+        frame = new JFrame("Contorle de produção");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 800);
         frame.setResizable(false);
@@ -55,19 +63,26 @@ public class SwingMainScreen implements PropertyChangeListener {
 
         JLabel label = new JLabel("Total a processar:");
 
-        JFormattedTextField field = new JFormattedTextField(NumberFormat.getNumberInstance());
-        field.setValue((double) 0);
-        field.setColumns(30);
-        field.addPropertyChangeListener("value", this);
+        JTextField field = new JTextField();
+        field.setColumns(10);
+
+        JButton buttonAction = new JButton("Executar");
+        buttonAction.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                float tot = Float.parseFloat(field.getText());
+                try {
+                    Controladora.getInstancia().executarMalteacao(tot);
+                } catch (VolumeInsuficienteEx ex) {
+                    JOptionPane.showMessageDialog(frame, "Total de volume insuficiente!");
+                }
+            }
+        });
 
         panel.add(label);
         panel.add(field);
-
+        panel.add(buttonAction);
         return panel;
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-
-    }
 }

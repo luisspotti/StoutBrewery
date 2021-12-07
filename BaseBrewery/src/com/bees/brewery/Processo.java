@@ -8,7 +8,7 @@ public abstract class Processo {
     public float executarProcesso(float totalParaProcessar) {
         for (Maquina m : maquinas) {
             m.executar();
-            totalParaProcessar = totalParaProcessar - (totalParaProcessar * m.taxaDePerdas);
+            totalParaProcessar = totalParaProcessar - (totalParaProcessar * m.taxaDePerdas / 100);
         }
 
         return totalParaProcessar;
