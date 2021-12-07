@@ -8,6 +8,6 @@ import java.util.LinkedList;
 
 public class Envase extends Processo {
     public Envase() {
-        maquinas.add(new Envasadora());
+        maquinas.add(new Envasadora(1, 5));
     }
 }

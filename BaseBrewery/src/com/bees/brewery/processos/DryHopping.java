@@ -8,6 +8,6 @@ import java.util.LinkedList;
 
 public class DryHopping extends Processo {
     public DryHopping() {
-        maquinas.add(new Maturadora());
+        maquinas.add(new Maturadora(1,30));
     }
 }

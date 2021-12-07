@@ -8,6 +8,6 @@ import java.util.LinkedList;
 
 public class Fermentacao extends Processo {
     public Fermentacao() {
-        maquinas.add(new Fermentadora());
+        maquinas.add(new Fermentadora(0, 10));
     }
 }

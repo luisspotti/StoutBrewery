@@ -10,8 +10,8 @@ import java.util.LinkedList;
 
 public class Malteacao extends Processo {
     public Malteacao() {
-        maquinas.add(new Umidificador());
-        maquinas.add(new Secadora());
-        maquinas.add(new Torra());
+        maquinas.add(new Umidificador(0, 2));
+        maquinas.add(new Secadora(0, 8));
+        maquinas.add(new Torra(5, 7));
     }
 }

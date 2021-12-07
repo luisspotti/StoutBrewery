@@ -5,13 +5,12 @@ import java.util.LinkedList;
 public abstract class Processo {
     protected LinkedList<Maquina> maquinas = new LinkedList<>();
 
-
-    public Boolean executarProcesso() {
-        Boolean retorno = true;
+    public float executarProcesso(float totalParaProcessar) {
         for (Maquina m : maquinas) {
-            retorno = retorno && m.executar();
+            m.executar();
+            totalParaProcessar = totalParaProcessar - (totalParaProcessar * m.taxaDePerdas);
         }
 
-        return retorno;
+        return totalParaProcessar;
     }
 }

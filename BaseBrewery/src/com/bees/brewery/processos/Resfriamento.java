@@ -8,6 +8,6 @@ import java.util.LinkedList;
 
 public class Resfriamento extends Processo {
     public Resfriamento() {
-        maquinas.add(new Refrigeradora());
+        maquinas.add(new Refrigeradora(0, 10));
     }
 }

@@ -8,6 +8,6 @@ import java.util.LinkedList;
 
 public class Envelhecimento extends Processo {
     public Envelhecimento() {
-        maquinas.add(new Maturadora());
+        maquinas.add(new Maturadora(1, 5));
     }
 }

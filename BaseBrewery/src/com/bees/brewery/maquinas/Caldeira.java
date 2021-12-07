@@ -4,6 +4,10 @@ import com.bees.brewery.Maquina;
 
 public class Caldeira extends Maquina {
 
+    public Caldeira(int taxaDePerdas, long tempoDeExecucao) {
+        super(taxaDePerdas, tempoDeExecucao);
+    }
+
     @Override
     protected Boolean executar() {
         return null;

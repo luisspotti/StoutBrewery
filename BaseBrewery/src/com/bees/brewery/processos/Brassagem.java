@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 public class Brassagem extends Processo {
     public Brassagem() {
-        maquinas.add(new Moinho());
-        maquinas.add(new Caldeira());
+        maquinas.add(new Moinho(2, 2));
+        maquinas.add(new Caldeira(4, 15));
     }
 }

@@ -1,26 +1,22 @@
 package com.bees.brewery;
 
-public abstract class Armazenamento<Liquido> {
+public class Armazenamento {
+    protected float volume = 0;
 
-    /**
-     * Altura do armazenamento, em metros.
-     */
-    protected int altura;
+    public float getVolume() {
+        return volume;
+    }
 
-    /**
-     * Largura do armazenamento, em metros.
-     */
-    protected int largura;
+    public void addVolume(float val) {
+        volume += val;
+    }
 
-    /**
-     * Profundidade do armazenamento, em metros.
-     */
-    protected int profundidade;
+    public void removeVolume(float val) {
+        volume -= val;
+        if (volume < 0)
+            volume = 0;
+    }
 
-    /**
-     * Tipo de liquido armazenado.
-     */
-    protected Liquido tipoDeLiquido;
 
     /**
      * Temperatura do liquido, em Celsius.

@@ -8,6 +8,6 @@ import java.util.LinkedList;
 
 public class Filtragem extends Processo {
     public Filtragem() {
-        maquinas.add(new Filtro());
+        maquinas.add(new Filtro(0, 1));
     }
 }

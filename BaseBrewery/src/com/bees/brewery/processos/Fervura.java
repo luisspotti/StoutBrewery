@@ -8,6 +8,6 @@ import java.util.LinkedList;
 
 public class Fervura extends Processo {
     public Fervura() {
-       maquinas.add(new Caldeira());
+       maquinas.add(new Caldeira(2, 15));
     }
 }
