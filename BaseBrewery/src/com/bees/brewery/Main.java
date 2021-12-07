@@ -8,9 +8,8 @@ import java.awt.event.ActionListener;
 public class Main {
 
     public static void main(String[] args) {
-	    // write your code here
+	    Controladora controladora = Controladora.getInstancia();
 
-        SwingExamples examples = new SwingExamples();
-        examples.execute();
+        
     }
 }

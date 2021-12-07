@@ -12,7 +12,7 @@ public class Controladora {
 
     }
 
-    public Controladora getInstancia() {
+    public static Controladora getInstancia() {
         if (instancia == null)
             instancia = new Controladora();
 
