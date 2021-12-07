@@ -95,7 +95,7 @@ public class Controladora extends Observable {
     private Envase envase = new Envase();
     private Armazenamento totEnvase = new Armazenamento();
 
-    //TOOD: Mudar depois para calcular a partir do tipo de container
+    //TODO: Mudar depois para calcular a partir do tipo de container
     public void executarEnvase(float totalListros) throws VolumeInsuficienteEx {
         if (totalListros > getTotDryHopping().getVolume())
             throw new VolumeInsuficienteEx();
