@@ -24,6 +24,7 @@ abstract class BasePainel extends JPanel {
         buttonAction = new JButton("Executar");
         buttonAction.addActionListener(e -> {
             try {
+                buttonAction.setEnabled(false);
                 float valor = Float.parseFloat(field.getText());
                 executarAcao(valor);
             } catch (VolumeInsuficienteEx ex) {

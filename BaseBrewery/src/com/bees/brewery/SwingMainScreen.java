@@ -157,44 +157,53 @@ public class SwingMainScreen implements Observer {
         if ((controladora instanceof Controladora)&(arg1 instanceof EnumProcessos)) {
             Controladora controlador = (Controladora) controladora;
             EnumProcessos processo = (EnumProcessos) arg1;
-            float total = 0;
+            float total;
 
             switch (processo) {
                 case FERMENTACAO:
                     total = controlador.getTotFermentacao().getVolume();
                     atualizarTotalFermentacao(total);
+                    fermentacaoPainel.buttonAction.setEnabled(true);
                     break;
                 case BRASSAGEM:
                     total = controlador.getTotBrassagem().getVolume();
                     atualizarTotalBrassagem(total);
+                    brassagemPainel.buttonAction.setEnabled(true);
                     break;
                 case FILTRAGEM:
                     total = controlador.getTotFiltragem().getVolume();
                     atualizarTotalFiltragem(total);
+                    filtragemPainel.buttonAction.setEnabled(true);
                     break;
                 case FERVURA:
                     total = controlador.getTotFervura().getVolume();
                     atualizarTotalFervura(total);
+                    fervuraPainel.buttonAction.setEnabled(true);
                     break;
                 case DRYHOPPING:
                     total = controlador.getTotDryHopping().getVolume();
                     atualizarTotalDryHopping(total);
+                    dryHoppingPainel.buttonAction.setEnabled(true);
                     break;
                 case ENVASE:
                     total = controlador.getTotEnvase().getVolume();
                     atualizarTotalEnvase(total);
+                    envasePainel.buttonAction.setEnabled(true);
                     break;
                 case ENVELHECIMENTO:
                     total = controlador.getTotEnvelhecimento().getVolume();
                     atualizarTotalEnvelhecimento(total);
+                    envelhecimentoPainel.buttonAction.setEnabled(true);
                     break;
                 case MALTEACAO:
                     total = controlador.getTotMalteacao().getVolume();
                     atualizarTotalMalteacao(total);
+                    malteacaoPainel.buttonAction.setEnabled(true);
                     break;
                 case RESFRIAMENTO:
                     total = controlador.getTotResfriamento().getVolume();
                     atualizarTotalResfriamento(total);
+                    resfriamentoPainel.buttonAction.setEnabled(true);
                     break;
             }
         }
