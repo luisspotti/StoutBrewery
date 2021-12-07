@@ -1,6 +1,7 @@
 package com.bees.brewery;
 
 import com.bees.brewery.ex.VolumeInsuficienteEx;
+import com.bees.brewery.ui.MalteacaoPainel;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -13,7 +14,6 @@ import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
-import java.util.concurrent.Flow;
 
 public class SwingMainScreen {
 
@@ -38,7 +38,7 @@ public class SwingMainScreen {
         JPanel panelDryHopping = new JPanel();
         JPanel panelEnvase = new JPanel();
 
-        painel.add("Malteação", panelMalteacao);
+        painel.add("Malteação", new MalteacaoPainel(frame));
         painel.add("Brassagem", panelBrassagem);
         painel.add("Filtragem", panelFiltragem);
         painel.add("Fervura", panelFervura);
