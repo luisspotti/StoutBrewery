@@ -33,7 +33,7 @@ public class Controladora extends Observable {
         getTotMalteacao().removeVolume(totalListros);
 
         setChanged();
-        notifyObservers();
+        notifyObservers(EnumProcessos.BRASSAGEM);
     }
 
     private DryHopping dryHopping = new DryHopping();
@@ -47,7 +47,7 @@ public class Controladora extends Observable {
         getTotEnvelhecimento().removeVolume(totalListros);
 
         setChanged();
-        notifyObservers();
+        notifyObservers(EnumProcessos.DRYHOPPING);
     }
 
     private Envelhecimento envelhecimento = new Envelhecimento();
@@ -61,7 +61,7 @@ public class Controladora extends Observable {
         getTotFermentacao().removeVolume(totalListros);
 
         setChanged();
-        notifyObservers();
+        notifyObservers(EnumProcessos.ENVELHECIMENTO);
     }
 
     private Fermentacao fermentacao = new Fermentacao();
@@ -75,7 +75,7 @@ public class Controladora extends Observable {
         getTotResfriamento().removeVolume(totalListros);
 
         setChanged();
-        notifyObservers();
+        notifyObservers(EnumProcessos.FERMENTACAO);
     }
 
     private Fervura fervura = new Fervura();
@@ -89,7 +89,7 @@ public class Controladora extends Observable {
         getTotFiltragem().removeVolume(totalListros);
 
         setChanged();
-        notifyObservers();
+        notifyObservers(EnumProcessos.FERVURA);
     }
 
     private Envase envase = new Envase();
@@ -104,7 +104,7 @@ public class Controladora extends Observable {
         getTotDryHopping().removeVolume(totalListros);
 
         setChanged();
-        notifyObservers();
+        notifyObservers(EnumProcessos.ENVASE);
     }
 
     private Filtragem filtragem = new Filtragem();
@@ -118,7 +118,7 @@ public class Controladora extends Observable {
         getTotBrassagem().removeVolume(totalListros);
 
         setChanged();
-        notifyObservers();
+        notifyObservers(EnumProcessos.FILTRAGEM);
     }
 
     private Malteacao malteacao = new Malteacao();
@@ -128,7 +128,7 @@ public class Controladora extends Observable {
         getTotMalteacao().addVolume(malteacao.executarProcesso(totalListros));
 
         setChanged();
-        notifyObservers();
+        notifyObservers(EnumProcessos.MALTEACAO);
     }
 
     private Resfriamento resfriamento = new Resfriamento();
@@ -142,7 +142,7 @@ public class Controladora extends Observable {
         getTotFervura().removeVolume(totalListros);
 
         setChanged();
-        notifyObservers();
+        notifyObservers(EnumProcessos.RESFRIAMENTO);
     }
 
     public Armazenamento getTotBrassagem() {

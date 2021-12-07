@@ -5,7 +5,7 @@ import com.bees.brewery.ex.VolumeInsuficienteEx;
 
 import javax.swing.*;
 
-public class MalteacaoPainel extends  BasePainel{
+public class MalteacaoPainel extends BasePainel{
     public MalteacaoPainel(JFrame frame) {
         super(frame);
     }

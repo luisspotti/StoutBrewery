@@ -1,7 +1,8 @@
 package com.bees.brewery;
 
+import com.bees.brewery.processos.EnumProcessos;
+import com.bees.brewery.processos.Fervura;
 import com.bees.brewery.ui.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.Observable;
@@ -20,6 +21,16 @@ public class SwingMainScreen implements Observer {
     private JLabel labelTotalDryHopping = null;
     private JLabel labelTotalEnvase = null;
 
+    private MalteacaoPainel malteacaoPainel;
+    private BrassagemPainel brassagemPainel;
+    private FiltragemPainel filtragemPainel;
+    private FervuraPainel fervuraPainel;
+    private ResfriamentoPainel resfriamentoPainel;
+    private FermentacaoPainel fermentacaoPainel;
+    private EnvelhecimentoPainel envelhecimentoPainel;
+    private DryHoppingPainel dryHoppingPainel;
+    private EnvasePainel envasePainel;
+
     public void execute() {
         //Creating the Frame
         frame = new JFrame("Contorle de produção");
@@ -29,15 +40,25 @@ public class SwingMainScreen implements Observer {
 
         JTabbedPane painel = new JTabbedPane();
 
-        painel.add("Malteação", new MalteacaoPainel(frame));
-        painel.add("Brassagem", new BrassagemPainel(frame));
-        painel.add("Filtragem", new FiltragemPainel(frame));
-        painel.add("Fervura", new FervuraPainel(frame));
-        painel.add("Resfriamento", new ResfriamentoPainel(frame));
-        painel.add("Fermentação", new FermentacaoPainel(frame));
-        painel.add("Envelhecimento", new EnvelhecimentoPainel(frame));
-        painel.add("Dry Hopping", new DryHoppingPainel(frame));
-        painel.add("Envase", new EnvasePainel(frame));
+        malteacaoPainel = new MalteacaoPainel(frame);
+        brassagemPainel = new BrassagemPainel(frame);
+        filtragemPainel = new FiltragemPainel(frame);
+        fervuraPainel = new FervuraPainel(frame);
+        resfriamentoPainel = new ResfriamentoPainel(frame);
+        fermentacaoPainel = new FermentacaoPainel(frame);
+        envelhecimentoPainel = new EnvelhecimentoPainel(frame);
+        dryHoppingPainel = new DryHoppingPainel(frame);
+        envasePainel = new EnvasePainel(frame);
+
+        painel.add("Malteação", malteacaoPainel);
+        painel.add("Brassagem", brassagemPainel);
+        painel.add("Filtragem", filtragemPainel);
+        painel.add("Fervura", fervuraPainel);
+        painel.add("Resfriamento", resfriamentoPainel);
+        painel.add("Fermentação", fermentacaoPainel);
+        painel.add("Envelhecimento", envelhecimentoPainel);
+        painel.add("Dry Hopping", dryHoppingPainel);
+        painel.add("Envase", envasePainel);
 
         Controladora controladora = Controladora.getInstancia();
         controladora.addObserver(this);
@@ -133,9 +154,49 @@ public class SwingMainScreen implements Observer {
 
     @Override
     public void update(Observable controladora, Object arg1) {
-        if (controladora instanceof Controladora) {
+        if ((controladora instanceof Controladora)&(arg1 instanceof EnumProcessos)) {
             Controladora controlador = (Controladora) controladora;
-            atualizarTotais(controlador);
+            EnumProcessos processo = (EnumProcessos) arg1;
+            float total = 0;
+
+            switch (processo) {
+                case FERMENTACAO:
+                    total = controlador.getTotFermentacao().getVolume();
+                    atualizarTotalFermentacao(total);
+                    break;
+                case BRASSAGEM:
+                    total = controlador.getTotBrassagem().getVolume();
+                    atualizarTotalBrassagem(total);
+                    break;
+                case FILTRAGEM:
+                    total = controlador.getTotFiltragem().getVolume();
+                    atualizarTotalFiltragem(total);
+                    break;
+                case FERVURA:
+                    total = controlador.getTotFervura().getVolume();
+                    atualizarTotalFervura(total);
+                    break;
+                case DRYHOPPING:
+                    total = controlador.getTotDryHopping().getVolume();
+                    atualizarTotalDryHopping(total);
+                    break;
+                case ENVASE:
+                    total = controlador.getTotEnvase().getVolume();
+                    atualizarTotalEnvase(total);
+                    break;
+                case ENVELHECIMENTO:
+                    total = controlador.getTotEnvelhecimento().getVolume();
+                    atualizarTotalEnvelhecimento(total);
+                    break;
+                case MALTEACAO:
+                    total = controlador.getTotMalteacao().getVolume();
+                    atualizarTotalMalteacao(total);
+                    break;
+                case RESFRIAMENTO:
+                    total = controlador.getTotResfriamento().getVolume();
+                    atualizarTotalResfriamento(total);
+                    break;
+            }
         }
     }
 }

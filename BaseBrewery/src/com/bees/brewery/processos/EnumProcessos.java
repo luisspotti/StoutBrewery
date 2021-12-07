@@ -1,0 +1,5 @@
+package com.bees.brewery.processos;
+
+public enum EnumProcessos {
+    MALTEACAO, BRASSAGEM, FILTRAGEM, FERVURA, RESFRIAMENTO, FERMENTACAO, ENVELHECIMENTO, DRYHOPPING, ENVASE
+}

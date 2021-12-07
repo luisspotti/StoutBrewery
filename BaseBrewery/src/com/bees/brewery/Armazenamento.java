@@ -1,7 +1,7 @@
 package com.bees.brewery;
 
 public class Armazenamento {
-    protected float volume = 0;
+    private float volume = 0;
 
     public float getVolume() {
         return volume;

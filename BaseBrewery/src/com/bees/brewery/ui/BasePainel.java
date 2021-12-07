@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 
 abstract class BasePainel extends JPanel {
 
+    public JButton buttonAction;
+
     public BasePainel(JFrame frame){
         FlowLayout layout = new FlowLayout();
         layout.setAlignment(FlowLayout.LEFT);
@@ -19,16 +21,13 @@ abstract class BasePainel extends JPanel {
         JTextField field = new JTextField();
         field.setColumns(10);
 
-        JButton buttonAction = new JButton("Executar");
-        buttonAction.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    float valor = Float.parseFloat(field.getText());
-                    executarAcao(valor);
-                } catch (VolumeInsuficienteEx ex) {
-                    JOptionPane.showMessageDialog(frame, ex.getMessage());
-                }
+        buttonAction = new JButton("Executar");
+        buttonAction.addActionListener(e -> {
+            try {
+                float valor = Float.parseFloat(field.getText());
+                executarAcao(valor);
+            } catch (VolumeInsuficienteEx ex) {
+                JOptionPane.showMessageDialog(frame, ex.getMessage());
             }
         });
 
