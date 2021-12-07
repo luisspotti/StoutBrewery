@@ -1,7 +1,7 @@
 package com.bees.brewery;
 
 import com.bees.brewery.ex.VolumeInsuficienteEx;
-import com.bees.brewery.ui.MalteacaoPainel;
+import com.bees.brewery.ui.*;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -28,61 +28,20 @@ public class SwingMainScreen {
 
         JTabbedPane painel = new JTabbedPane();
 
-        JPanel panelMalteacao = getPainelMalteacao();
-        JPanel panelBrassagem = new JPanel();
-        JPanel panelFiltragem = new JPanel();
-        JPanel panelFervura = new JPanel();
-        JPanel panelResfriamento = new JPanel();
-        JPanel panelFermentacao = new JPanel();
-        JPanel panelEnvelhecimento = new JPanel();
-        JPanel panelDryHopping = new JPanel();
-        JPanel panelEnvase = new JPanel();
-
         painel.add("Malteação", new MalteacaoPainel(frame));
-        painel.add("Brassagem", panelBrassagem);
-        painel.add("Filtragem", panelFiltragem);
-        painel.add("Fervura", panelFervura);
-        painel.add("Resfriamento", panelResfriamento);
-        painel.add("Fermentação", panelFermentacao);
-        painel.add("Envelhecimento", panelEnvelhecimento);
-        painel.add("Dry Hopping", panelDryHopping);
-        painel.add("Envase", panelEnvase);
+        painel.add("Brassagem", new BrassagemPainel(frame));
+        painel.add("Filtragem", new FiltragemPainel(frame));
+        painel.add("Fervura", new FervuraPainel(frame));
+        painel.add("Resfriamento", new ResfriamentoPainel(frame));
+        painel.add("Fermentação", new FermentacaoPainel(frame));
+        painel.add("Envelhecimento", new EnvelhecimentoPainel(frame));
+        painel.add("Dry Hopping", new DryHoppingPainel(frame));
+        painel.add("Envase", new EnvasePainel(frame));
 
         //Adding Components to the frame.
 
         frame.getContentPane().add(BorderLayout.CENTER, painel);
         frame.setVisible(true);
-    }
-
-    private JPanel getPainelMalteacao() {
-        JPanel panel = new JPanel();
-
-        FlowLayout layout = new FlowLayout();
-        layout.setAlignment(FlowLayout.LEFT);
-        panel.setLayout(layout);
-
-        JLabel label = new JLabel("Total a processar:");
-
-        JTextField field = new JTextField();
-        field.setColumns(10);
-
-        JButton buttonAction = new JButton("Executar");
-        buttonAction.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                float tot = Float.parseFloat(field.getText());
-                try {
-                    Controladora.getInstancia().executarMalteacao(tot);
-                } catch (VolumeInsuficienteEx ex) {
-                    JOptionPane.showMessageDialog(frame, "Total de volume insuficiente!");
-                }
-            }
-        });
-
-        panel.add(label);
-        panel.add(field);
-        panel.add(buttonAction);
-        return panel;
     }
 
 }
