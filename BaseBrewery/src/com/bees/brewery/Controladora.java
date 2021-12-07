@@ -3,7 +3,9 @@ package com.bees.brewery;
 import com.bees.brewery.ex.VolumeInsuficienteEx;
 import com.bees.brewery.processos.*;
 
-public class Controladora {
+import java.util.Observable;
+
+public class Controladora extends Observable {
 
     //singleton
     private static Controladora instancia = null;
@@ -29,6 +31,9 @@ public class Controladora {
 
         getTotBrassagem().addVolume(brassagem.executarProcesso(totalListros));
         getTotMalteacao().removeVolume(totalListros);
+
+        setChanged();
+        notifyObservers();
     }
 
     private DryHopping dryHopping = new DryHopping();
@@ -40,6 +45,9 @@ public class Controladora {
 
         getTotDryHopping().addVolume(dryHopping.executarProcesso(totalListros));
         getTotEnvelhecimento().removeVolume(totalListros);
+
+        setChanged();
+        notifyObservers();
     }
 
     private Envelhecimento envelhecimento = new Envelhecimento();
@@ -51,6 +59,9 @@ public class Controladora {
 
         getTotEnvelhecimento().addVolume(envelhecimento.executarProcesso(totalListros));
         getTotFermentacao().removeVolume(totalListros);
+
+        setChanged();
+        notifyObservers();
     }
 
     private Fermentacao fermentacao = new Fermentacao();
@@ -62,6 +73,9 @@ public class Controladora {
 
         getTotFermentacao().addVolume(fermentacao.executarProcesso(totalListros));
         getTotResfriamento().removeVolume(totalListros);
+
+        setChanged();
+        notifyObservers();
     }
 
     private Fervura fervura = new Fervura();
@@ -73,6 +87,9 @@ public class Controladora {
 
         getTotFervura().addVolume(fervura.executarProcesso(totalListros));
         getTotFiltragem().removeVolume(totalListros);
+
+        setChanged();
+        notifyObservers();
     }
 
     private Envase envase = new Envase();
@@ -85,6 +102,9 @@ public class Controladora {
 
         getTotEnvase().addVolume(fervura.executarProcesso(totalListros));
         getTotDryHopping().removeVolume(totalListros);
+
+        setChanged();
+        notifyObservers();
     }
 
     private Filtragem filtragem = new Filtragem();
@@ -96,6 +116,9 @@ public class Controladora {
 
         getTotFiltragem().addVolume(filtragem.executarProcesso(totalListros));
         getTotBrassagem().removeVolume(totalListros);
+
+        setChanged();
+        notifyObservers();
     }
 
     private Malteacao malteacao = new Malteacao();
@@ -103,6 +126,9 @@ public class Controladora {
 
     public void executarMalteacao(float totalListros) throws VolumeInsuficienteEx {
         getTotMalteacao().addVolume(malteacao.executarProcesso(totalListros));
+
+        setChanged();
+        notifyObservers();
     }
 
     private Resfriamento resfriamento = new Resfriamento();
@@ -114,6 +140,9 @@ public class Controladora {
 
         getTotResfriamento().addVolume(resfriamento.executarProcesso(totalListros));
         getTotFervura().removeVolume(totalListros);
+
+        setChanged();
+        notifyObservers();
     }
 
     public Armazenamento getTotBrassagem() {

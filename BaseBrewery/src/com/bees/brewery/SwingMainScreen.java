@@ -4,8 +4,10 @@ import com.bees.brewery.ui.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
-public class SwingMainScreen {
+public class SwingMainScreen implements Observer {
 
     private JFrame frame = null;
     private JLabel labelTotalMalteacao = null;
@@ -38,15 +40,7 @@ public class SwingMainScreen {
         painel.add("Envase", new EnvasePainel(frame));
 
         Controladora controladora = Controladora.getInstancia();
-        float totalMalteacao = controladora.getTotMalteacao().getVolume();
-        float totalBrassagem = controladora.getTotBrassagem().getVolume();
-        float totalFiltragem = controladora.getTotFiltragem().getVolume();
-        float totalFervura = controladora.getTotFervura().getVolume();
-        float totalResfriamento = controladora.getTotResfriamento().getVolume();
-        float totalFermentacao = controladora.getTotFermentacao().getVolume();
-        float totalEnvelhecimento = controladora.getTotEnvelhecimento().getVolume();
-        float totalDryHopping = controladora.getTotDryHopping().getVolume();
-        float totalEnvase = controladora.getTotEnvase().getVolume();
+        controladora.addObserver(this);
 
         GridLayout layoutTotais = new GridLayout(9, 1);
         JPanel painelTotais = new JPanel();
@@ -61,15 +55,7 @@ public class SwingMainScreen {
         labelTotalDryHopping = new JLabel();
         labelTotalEnvase = new JLabel();
 
-        atualizarTotalMalteacao(totalMalteacao);
-        atualizarTotalBrassagem(totalBrassagem);
-        atualizarTotalFiltragem(totalFiltragem);
-        atualizarTotalFervura(totalFervura);
-        atualizarTotalResfriamento(totalResfriamento);
-        atualizarTotalFermentacao(totalFermentacao);
-        atualizarTotalEnvelhecimento(totalEnvelhecimento);
-        atualizarTotalDryHopping(totalDryHopping);
-        atualizarTotalEnvase(totalEnvase);
+        atualizarTotais(controladora);
 
         painelTotais.add(labelTotalMalteacao);
         painelTotais.add(labelTotalBrassagem);
@@ -121,5 +107,35 @@ public class SwingMainScreen {
 
     private void atualizarTotalEnvase(float total) {
         labelTotalEnvase.setText("Total envase: ".concat(String.format("%.2f", total)));
+    }
+
+    private void atualizarTotais(Controladora controladora) {
+        float totalMalteacao = controladora.getTotMalteacao().getVolume();
+        float totalBrassagem = controladora.getTotBrassagem().getVolume();
+        float totalFiltragem = controladora.getTotFiltragem().getVolume();
+        float totalFervura = controladora.getTotFervura().getVolume();
+        float totalResfriamento = controladora.getTotResfriamento().getVolume();
+        float totalFermentacao = controladora.getTotFermentacao().getVolume();
+        float totalEnvelhecimento = controladora.getTotEnvelhecimento().getVolume();
+        float totalDryHopping = controladora.getTotDryHopping().getVolume();
+        float totalEnvase = controladora.getTotEnvase().getVolume();
+
+        atualizarTotalMalteacao(totalMalteacao);
+        atualizarTotalBrassagem(totalBrassagem);
+        atualizarTotalFiltragem(totalFiltragem);
+        atualizarTotalFervura(totalFervura);
+        atualizarTotalResfriamento(totalResfriamento);
+        atualizarTotalFermentacao(totalFermentacao);
+        atualizarTotalEnvelhecimento(totalEnvelhecimento);
+        atualizarTotalDryHopping(totalDryHopping);
+        atualizarTotalEnvase(totalEnvase);
+    }
+
+    @Override
+    public void update(Observable controladora, Object arg1) {
+        if (controladora instanceof Controladora) {
+            Controladora controlador = (Controladora) controladora;
+            atualizarTotais(controlador);
+        }
     }
 }
