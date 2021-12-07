@@ -10,7 +10,7 @@ public abstract class Processo {
     }
 
 
-    public Boolean ExecutarProcesso() {
+    public Boolean executarProcesso() {
         Boolean retorno = true;
         for (Maquina m : maquinas) {
             retorno = retorno && m.executar();
