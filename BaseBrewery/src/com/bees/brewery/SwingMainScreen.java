@@ -1,23 +1,22 @@
 package com.bees.brewery;
 
-import com.bees.brewery.ex.VolumeInsuficienteEx;
 import com.bees.brewery.ui.*;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.text.NumberFormat;
 
 public class SwingMainScreen {
 
     private JFrame frame = null;
+    private JLabel labelTotalMalteacao = null;
+    private JLabel labelTotalBrassagem = null;
+    private JLabel labelTotalFiltragem = null;
+    private JLabel labelTotalFervura = null;
+    private JLabel labelTotalResfriamento = null;
+    private JLabel labelTotalFermentacao = null;
+    private JLabel labelTotalEnvelhecimento = null;
+    private JLabel labelTotalDryHopping = null;
+    private JLabel labelTotalEnvase = null;
 
     public void execute() {
         //Creating the Frame
@@ -38,10 +37,89 @@ public class SwingMainScreen {
         painel.add("Dry Hopping", new DryHoppingPainel(frame));
         painel.add("Envase", new EnvasePainel(frame));
 
-        //Adding Components to the frame.
+        Controladora controladora = Controladora.getInstancia();
+        float totalMalteacao = controladora.getTotMalteacao().getVolume();
+        float totalBrassagem = controladora.getTotBrassagem().getVolume();
+        float totalFiltragem = controladora.getTotFiltragem().getVolume();
+        float totalFervura = controladora.getTotFervura().getVolume();
+        float totalResfriamento = controladora.getTotResfriamento().getVolume();
+        float totalFermentacao = controladora.getTotFermentacao().getVolume();
+        float totalEnvelhecimento = controladora.getTotEnvelhecimento().getVolume();
+        float totalDryHopping = controladora.getTotDryHopping().getVolume();
+        float totalEnvase = controladora.getTotEnvase().getVolume();
 
+        GridLayout layoutTotais = new GridLayout(9, 1);
+        JPanel painelTotais = new JPanel();
+        painelTotais.setLayout(layoutTotais);
+        labelTotalMalteacao = new JLabel();
+        labelTotalBrassagem = new JLabel();
+        labelTotalFiltragem = new JLabel();
+        labelTotalFervura = new JLabel();
+        labelTotalResfriamento = new JLabel();
+        labelTotalFermentacao = new JLabel();
+        labelTotalEnvelhecimento = new JLabel();
+        labelTotalDryHopping = new JLabel();
+        labelTotalEnvase = new JLabel();
+
+        atualizarTotalMalteacao(totalMalteacao);
+        atualizarTotalBrassagem(totalBrassagem);
+        atualizarTotalFiltragem(totalFiltragem);
+        atualizarTotalFervura(totalFervura);
+        atualizarTotalResfriamento(totalResfriamento);
+        atualizarTotalFermentacao(totalFermentacao);
+        atualizarTotalEnvelhecimento(totalEnvelhecimento);
+        atualizarTotalDryHopping(totalDryHopping);
+        atualizarTotalEnvase(totalEnvase);
+
+        painelTotais.add(labelTotalMalteacao);
+        painelTotais.add(labelTotalBrassagem);
+        painelTotais.add(labelTotalFiltragem);
+        painelTotais.add(labelTotalFervura);
+        painelTotais.add(labelTotalResfriamento);
+        painelTotais.add(labelTotalFermentacao);
+        painelTotais.add(labelTotalEnvelhecimento);
+        painelTotais.add(labelTotalDryHopping);
+        painelTotais.add(labelTotalEnvase);
+
+        //Adding Components to the frame.
+        frame.getContentPane().add(BorderLayout.SOUTH, painelTotais);
         frame.getContentPane().add(BorderLayout.CENTER, painel);
         frame.setVisible(true);
     }
 
+    private void atualizarTotalMalteacao(float total) {
+        labelTotalMalteacao.setText("Total malteação: ".concat(String.format("%.2f", total)));
+    }
+
+    private void atualizarTotalBrassagem(float total) {
+        labelTotalBrassagem.setText("Total brassagem: ".concat(String.format("%.2f", total)));
+    }
+
+    private void atualizarTotalFiltragem(float total) {
+        labelTotalFiltragem.setText("Total filtragem: ".concat(String.format("%.2f", total)));
+    }
+
+    private void atualizarTotalFervura(float total) {
+        labelTotalFervura.setText("Total fervura: ".concat(String.format("%.2f", total)));
+    }
+
+    private void atualizarTotalResfriamento(float total) {
+        labelTotalResfriamento.setText("Total resfriamento: ".concat(String.format("%.2f", total)));
+    }
+
+    private void atualizarTotalFermentacao(float total) {
+        labelTotalFermentacao.setText("Total fermentação: ".concat(String.format("%.2f", total)));
+    }
+
+    private void atualizarTotalEnvelhecimento(float total) {
+        labelTotalEnvelhecimento.setText("Total envelhecimento: ".concat(String.format("%.2f", total)));
+    }
+
+    private void atualizarTotalDryHopping(float total) {
+        labelTotalDryHopping.setText("Total dry hopping: ".concat(String.format("%.2f", total)));
+    }
+
+    private void atualizarTotalEnvase(float total) {
+        labelTotalEnvase.setText("Total envase: ".concat(String.format("%.2f", total)));
+    }
 }

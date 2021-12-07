@@ -24,55 +24,55 @@ public class Controladora {
     private Armazenamento totBrassagem = new Armazenamento();
 
     public void executarBrassagem(float totalListros) throws VolumeInsuficienteEx {
-        if (totalListros > totMalteascao.getVolume())
+        if (totalListros > getTotMalteacao().getVolume())
             throw new VolumeInsuficienteEx();
 
-        totBrassagem.addVolume(brassagem.executarProcesso(totalListros));
-        totMalteascao.removeVolume(totalListros);
+        getTotBrassagem().addVolume(brassagem.executarProcesso(totalListros));
+        getTotMalteacao().removeVolume(totalListros);
     }
 
     private DryHopping dryHopping = new DryHopping();
     private Armazenamento totDryHopping = new Armazenamento();
 
     public void executarDryHopping(float totalListros) throws VolumeInsuficienteEx {
-        if (totalListros > totEnvelhecimento.getVolume())
+        if (totalListros > getTotEnvelhecimento().getVolume())
             throw new VolumeInsuficienteEx();
 
-        totDryHopping.addVolume(dryHopping.executarProcesso(totalListros));
-        totEnvelhecimento.removeVolume(totalListros);
+        getTotDryHopping().addVolume(dryHopping.executarProcesso(totalListros));
+        getTotEnvelhecimento().removeVolume(totalListros);
     }
 
     private Envelhecimento envelhecimento = new Envelhecimento();
     private Armazenamento totEnvelhecimento = new Armazenamento();
 
     public void executarEnvelhecimento(float totalListros) throws VolumeInsuficienteEx {
-        if (totalListros > totFermentacao.getVolume())
+        if (totalListros > getTotFermentacao().getVolume())
             throw new VolumeInsuficienteEx();
 
-        totEnvelhecimento.addVolume(envelhecimento.executarProcesso(totalListros));
-        totFermentacao.removeVolume(totalListros);
+        getTotEnvelhecimento().addVolume(envelhecimento.executarProcesso(totalListros));
+        getTotFermentacao().removeVolume(totalListros);
     }
 
     private Fermentacao fermentacao = new Fermentacao();
     private Armazenamento totFermentacao = new Armazenamento();
 
     public void executarFermentacao(float totalListros) throws VolumeInsuficienteEx {
-        if (totalListros > totResfriamento.getVolume())
+        if (totalListros > getTotResfriamento().getVolume())
             throw new VolumeInsuficienteEx();
 
-        totFermentacao.addVolume(fermentacao.executarProcesso(totalListros));
-        totResfriamento.removeVolume(totalListros);
+        getTotFermentacao().addVolume(fermentacao.executarProcesso(totalListros));
+        getTotResfriamento().removeVolume(totalListros);
     }
 
     private Fervura fervura = new Fervura();
     private Armazenamento totFervura = new Armazenamento();
 
     public void executarFervura(float totalListros) throws VolumeInsuficienteEx {
-        if (totalListros > totFiltragem.getVolume())
+        if (totalListros > getTotFiltragem().getVolume())
             throw new VolumeInsuficienteEx();
 
-        totFervura.addVolume(fervura.executarProcesso(totalListros));
-        totFiltragem.removeVolume(totalListros);
+        getTotFervura().addVolume(fervura.executarProcesso(totalListros));
+        getTotFiltragem().removeVolume(totalListros);
     }
 
     private Envase envase = new Envase();
@@ -80,39 +80,75 @@ public class Controladora {
 
     //TOOD: Mudar depois para calcular a partir do tipo de container
     public void executarEnvase(float totalListros) throws VolumeInsuficienteEx {
-        if (totalListros > totDryHopping.getVolume())
+        if (totalListros > getTotDryHopping().getVolume())
             throw new VolumeInsuficienteEx();
 
-        totEnvase.addVolume(fervura.executarProcesso(totalListros));
-        totDryHopping.removeVolume(totalListros);
+        getTotEnvase().addVolume(fervura.executarProcesso(totalListros));
+        getTotDryHopping().removeVolume(totalListros);
     }
 
     private Filtragem filtragem = new Filtragem();
     private Armazenamento totFiltragem = new Armazenamento();
 
     public void executarFiltragem(float totalListros) throws VolumeInsuficienteEx {
-        if (totalListros > totBrassagem.getVolume())
+        if (totalListros > getTotBrassagem().getVolume())
             throw new VolumeInsuficienteEx();
 
-        totFiltragem.addVolume(filtragem.executarProcesso(totalListros));
-        totBrassagem.removeVolume(totalListros);
+        getTotFiltragem().addVolume(filtragem.executarProcesso(totalListros));
+        getTotBrassagem().removeVolume(totalListros);
     }
 
     private Malteacao malteacao = new Malteacao();
-    private Armazenamento totMalteascao = new Armazenamento();
+    private Armazenamento totMalteacao = new Armazenamento();
 
     public void executarMalteacao(float totalListros) throws VolumeInsuficienteEx {
-        totMalteascao.addVolume(malteacao.executarProcesso(totalListros));
+        getTotMalteacao().addVolume(malteacao.executarProcesso(totalListros));
     }
 
     private Resfriamento resfriamento = new Resfriamento();
     private Armazenamento totResfriamento = new Armazenamento();
 
     public void executarResfriamento(float totalListros) throws VolumeInsuficienteEx {
-        if (totalListros > totFervura.getVolume())
+        if (totalListros > getTotFervura().getVolume())
             throw new VolumeInsuficienteEx();
 
-        totResfriamento.addVolume(resfriamento.executarProcesso(totalListros));
-        totFervura.removeVolume(totalListros);
+        getTotResfriamento().addVolume(resfriamento.executarProcesso(totalListros));
+        getTotFervura().removeVolume(totalListros);
+    }
+
+    public Armazenamento getTotBrassagem() {
+        return totBrassagem;
+    }
+
+    public Armazenamento getTotDryHopping() {
+        return totDryHopping;
+    }
+
+    public Armazenamento getTotEnvelhecimento() {
+        return totEnvelhecimento;
+    }
+
+    public Armazenamento getTotFermentacao() {
+        return totFermentacao;
+    }
+
+    public Armazenamento getTotFervura() {
+        return totFervura;
+    }
+
+    public Armazenamento getTotEnvase() {
+        return totEnvase;
+    }
+
+    public Armazenamento getTotFiltragem() {
+        return totFiltragem;
+    }
+
+    public Armazenamento getTotMalteacao() {
+        return totMalteacao;
+    }
+
+    public Armazenamento getTotResfriamento() {
+        return totResfriamento;
     }
 }
